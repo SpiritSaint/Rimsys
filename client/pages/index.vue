@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Users, Contents } from '@/types/api'
+import { Users, Contents, Content } from '@/types/api'
 export default Vue.extend({
   data () {
     const users:Users = []
@@ -85,6 +85,17 @@ export default Vue.extend({
       this.count = count
       this.get(this.count)
     },
+  },
+  computed: {
+    skills ():Contents {
+      return this.contents.filter((item:Content) => item.type === 'skills');
+    },
+    interests ():Contents {
+      return this.contents.filter((item:Content) => item.type === 'interests');
+    },
+    experiences ():Contents {
+      return this.contents.filter((item:Content) => item.type === 'experiences');
+    }
   },
 })
 </script>
