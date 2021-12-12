@@ -63,12 +63,12 @@ export default Vue.extend({
     }
   },
   mounted () {
-    this.getSkills()
+    this.getContents()
     this.get(this.count)
     console.log('test')
   },
   methods: {
-    async getSkills (): Promise<void> {
+    async getContents (): Promise<void> {
       await this.$sleep(2000)
       this.contents = (
         await this.$axios.get('contents')

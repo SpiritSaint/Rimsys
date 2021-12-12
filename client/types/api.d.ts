@@ -35,4 +35,4 @@ export interface Content {
 
 export type Users = Array<User>
 
-export type Contents = Array<Content>;
+export type Contents = Array<Content>
