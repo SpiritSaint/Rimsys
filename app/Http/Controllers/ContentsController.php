@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use acidjazz\metapi\MetApi;
-use App\Models\Skill;
+use App\Models\Content;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 
-class SkillsController extends BaseController
+class ContentsController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests, MetApi;
 
@@ -23,8 +22,8 @@ class SkillsController extends BaseController
      */
     public function index(): JsonResponse
     {
-        $skills = Skill::all();
-        return $this->render($skills);
+        $contents = Content::all();
+        return $this->render($contents);
     }
 
     /**
@@ -35,51 +34,53 @@ class SkillsController extends BaseController
      */
     public function store(Request $request): JsonResponse
     {
-        $skill = Skill::create([
+        $content = Content::create([
+            'type' => $request->input('type'),
             'icon' => $request->input('icon'),
             'title' => $request->input('title'),
             'body' => $request->input('body'),
         ]);
-        return $this->render($skill, 201);
+        return $this->render($content, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Skill $skill
+     * @param Content $content
      * @return JsonResponse
      */
-    public function show(Skill $skill): JsonResponse
+    public function show(Content $content): JsonResponse
     {
-        return $this->render($skill);
+        return $this->render($content);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Skill $skill
+     * @param Content $content
      * @return JsonResponse
      */
-    public function update(Request $request, Skill $skill): JsonResponse
+    public function update(Request $request, Content $content): JsonResponse
     {
-        $skill->update([
-            'icon' => $request->filled('icon') ? $request->input('icon') : $skill->icon,
-            'title' => $request->filled('title') ? $request->input('title') : $skill->title,
-            'body' => $request->filled('body') ? $request->input('body') : $skill->body,
+        $content->update([
+            'type' => $request->filled('type') ? $request->input('type') : $content->type,
+            'icon' => $request->filled('icon') ? $request->input('icon') : $content->icon,
+            'title' => $request->filled('title') ? $request->input('title') : $content->title,
+            'body' => $request->filled('body') ? $request->input('body') : $content->body,
         ]);
-        return $this->render($skill);
+        return $this->render($content);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Skill $skill
+     * @param Content $content
      * @return JsonResponse
      */
-    public function destroy(Skill $skill): JsonResponse
+    public function destroy(Content $content): JsonResponse
     {
-        $skill->delete();
+        $content->delete();
         return $this->render([], 204);
     }
 }

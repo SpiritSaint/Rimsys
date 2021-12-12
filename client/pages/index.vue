@@ -6,14 +6,14 @@
     <ul v-if="users.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <contact-card-skeleton v-for="i in 9" :key="`skel-${i}`" />
     </ul>
-    <ul v-if="skills.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <skill-card-skeleton v-for="i in 9" :key="`skill-${i}`" />
+    <ul v-if="contents.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 9" :key="`content-${i}`" />
     </ul>
     <ul v-if="users.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <contact-card v-for="(user, index) in users" :key="index" :user="user" />
     </ul>
-    <ul v-if="skills.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <skill-card v-for="(skill, index) in skills" :key="index" :skill="skill" />
+    <ul v-if="contents.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in contents" :key="index" :content="content" />
     </ul>
     <div class="text-center mt-4">
       <span>provided by endpoint</span><span>&nbsp;</span>
@@ -49,15 +49,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Users, Skills } from '@/types/api'
+import { Users, Contents } from '@/types/api'
 export default Vue.extend({
   data () {
     const users:Users = []
-    const skills:Skills = []
+    const contents:Contents = []
     const count:number = 9
 
     return {
-      skills,
+      contents,
       users,
       count,
     }
@@ -70,9 +70,9 @@ export default Vue.extend({
   methods: {
     async getSkills (): Promise<void> {
       await this.$sleep(2000)
-      this.skills = (
-        await this.$axios.get('skills')
-      ).data.data as Skills
+      this.contents = (
+        await this.$axios.get('contents')
+      ).data.data as Contents
     },
     async get (count: number): Promise<void> {
       await this.$sleep(2000)

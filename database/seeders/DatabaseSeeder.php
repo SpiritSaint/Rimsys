@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Skill;
+use App\Models\Content;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // User::factory(10)->create();
-        Skill::factory(9)->create();
+        Content::factory(9)->create();
     }
 }

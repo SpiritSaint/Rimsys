@@ -26,7 +26,8 @@ export interface User {
   avatar: string
 }
 
-export interface Skill {
+export interface Content {
+  type: string
   icon: string
   title: string
   body: string
@@ -34,4 +35,4 @@ export interface Skill {
 
 export type Users = Array<User>
 
-export type Skills = Array<Skill>;
+export type Contents = Array<Content>;
