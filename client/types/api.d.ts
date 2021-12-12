@@ -26,4 +26,12 @@ export interface User {
   avatar: string
 }
 
+export interface Skill {
+  icon: string
+  title: string
+  body: string
+}
+
 export type Users = Array<User>
+
+export type Skills = Array<Skill>;

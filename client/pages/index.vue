@@ -6,8 +6,14 @@
     <ul v-if="users.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <contact-card-skeleton v-for="i in 9" :key="`skel-${i}`" />
     </ul>
+    <ul v-if="skills.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <skill-card-skeleton v-for="i in 9" :key="`skill-${i}`" />
+    </ul>
     <ul v-if="users.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <contact-card v-for="(user, index) in users" :key="index" :user="user" />
+    </ul>
+    <ul v-if="skills.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <skill-card v-for="(skill, index) in skills" :key="index" :skill="skill" />
     </ul>
     <div class="text-center mt-4">
       <span>provided by endpoint</span><span>&nbsp;</span>
@@ -43,22 +49,31 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Users } from '@/types/api'
+import { Users, Skills } from '@/types/api'
 export default Vue.extend({
   data () {
     const users:Users = []
+    const skills:Skills = []
     const count:number = 9
 
     return {
+      skills,
       users,
       count,
     }
   },
   mounted () {
+    this.getSkills();
     this.get(this.count)
     console.log('test')
   },
   methods: {
+    async getSkills (): Promise<void> {
+      await this.$sleep(2000)
+      this.skills = (
+        await this.$axios.get('skills')
+      ).data.data as Skills
+    },
     async get (count: number): Promise<void> {
       await this.$sleep(2000)
       this.users = (
