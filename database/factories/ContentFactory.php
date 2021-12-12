@@ -24,7 +24,7 @@ class ContentFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(['skills', 'interests', 'experiences']),
-            'title' => $this->faker->text(50),
+            'title' => $this->faker->text(33),
             'icon' => $this->faker->randomElement(['typescript', 'javascript', 'php', 'c++']),
             'body' => $this->faker->text(500),
         ];

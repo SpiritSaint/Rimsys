@@ -7,9 +7,7 @@
             {{ content.title }}
           </h3>
         </div>
-        <p class="mt-1 text-gray-500 text-sm leading-5 text-justify">
-          {{ content.body }}
-        </p>
+        <p class="mt-1 text-gray-500 text-sm leading-5 text-justify" v-html="parsed"></p>
       </div>
     </div>
   </li>
@@ -17,6 +15,7 @@
 
 <script lang="ts">
 import { PropType } from '@nuxtjs/composition-api'
+import { Marked } from '@ts-stack/markdown';
 import Vue from 'vue'
 import { Content } from '@/client/types/api'
 export default Vue.extend({
@@ -26,5 +25,10 @@ export default Vue.extend({
       required: true,
     },
   },
+  computed: {
+    parsed():String {
+      return Marked.parse(this.content.body);
+    }
+  }
 })
 </script>

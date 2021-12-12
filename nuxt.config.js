@@ -70,6 +70,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxt/content',
     // Doc: https://github.com/acidjazz/nuxt-tailvue
     ['nuxt-tailvue', { all: true }],
   ],

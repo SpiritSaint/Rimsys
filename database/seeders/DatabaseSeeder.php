@@ -15,6 +15,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // User::factory(10)->create();
-        Content::factory(9)->create();
+        Content::factory(6)->create([
+            'type' => 'skills',
+        ]);
+
+        Content::factory(3)->create([
+            'type' => 'interests',
+        ]);
+
+        Content::factory(3)->create([
+            'type' => 'experiences',
+        ]);
     }
 }

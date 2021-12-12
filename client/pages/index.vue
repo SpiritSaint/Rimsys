@@ -6,14 +6,29 @@
     <ul v-if="users.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <contact-card-skeleton v-for="i in 9" :key="`skel-${i}`" />
     </ul>
-    <ul v-if="contents.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <content-card-skeleton v-for="i in 9" :key="`content-${i}`" />
-    </ul>
     <ul v-if="users.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <contact-card v-for="(user, index) in users" :key="index" :user="user" />
     </ul>
-    <ul v-if="contents.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <content-card v-for="(content, index) in contents" :key="index" :content="content" />
+    <h1 class="text-4xl px-8">Skills</h1>
+    <ul v-if="skills.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 6" :key="`content-${i}`" />
+    </ul>
+    <ul v-if="skills.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in skills" :key="index" :content="content" />
+    </ul>
+    <h1 class="text-4xl px-8">Experiences</h1>
+    <ul v-if="experiences.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
+    </ul>
+    <ul v-if="experiences.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in experiences" :key="index" :content="content" />
+    </ul>
+    <h1 class="text-4xl px-8">Interests</h1>
+    <ul v-if="interests.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
+    </ul>
+    <ul v-if="interests.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in interests" :key="index" :content="content" />
     </ul>
     <div class="text-center mt-4">
       <span>provided by endpoint</span><span>&nbsp;</span>
