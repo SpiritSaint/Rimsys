@@ -23,8 +23,8 @@ export default Vue.extend({
   props: {
     content: {
       type: Object as PropType<Content>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>

@@ -62,6 +62,17 @@ export default Vue.extend({
       count,
     }
   },
+  computed: {
+    skills ():Contents {
+      return this.contents.filter((item:Content) => item.type === 'skills')
+    },
+    interests ():Contents {
+      return this.contents.filter((item:Content) => item.type === 'interests')
+    },
+    experiences ():Contents {
+      return this.contents.filter((item:Content) => item.type === 'experiences')
+    },
+  },
   mounted () {
     this.getContents()
     this.get(this.count)
@@ -85,17 +96,6 @@ export default Vue.extend({
       this.count = count
       this.get(this.count)
     },
-  },
-  computed: {
-    skills ():Contents {
-      return this.contents.filter((item:Content) => item.type === 'skills');
-    },
-    interests ():Contents {
-      return this.contents.filter((item:Content) => item.type === 'interests');
-    },
-    experiences ():Contents {
-      return this.contents.filter((item:Content) => item.type === 'experiences');
-    }
   },
 })
 </script>
