@@ -26,4 +26,13 @@ export interface User {
   avatar: string
 }
 
+export interface Content {
+  type: string
+  icon: string
+  title: string
+  body: string
+}
+
 export type Users = Array<User>
+
+export type Contents = Array<Content>

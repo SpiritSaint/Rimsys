@@ -19,3 +19,5 @@ Route::get('/', [Controller::class, 'routes'])
     ->withoutMiddleware('api');
 Route::get('/example', [Controller::class, 'example'])->name('example route');
 Route::get('/error', [Controller::class, 'error'])->name('error route');
+
+Route::resource('contents', \App\Http\Controllers\ContentsController::class)->except(['create', 'edit']);
