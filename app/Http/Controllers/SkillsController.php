@@ -19,7 +19,7 @@ class SkillsController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
@@ -31,7 +31,7 @@ class SkillsController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
@@ -47,7 +47,7 @@ class SkillsController extends BaseController
      * Display the specified resource.
      *
      * @param Skill $skill
-     * @return Response
+     * @return JsonResponse
      */
     public function show(Skill $skill): JsonResponse
     {
@@ -59,7 +59,7 @@ class SkillsController extends BaseController
      *
      * @param Request $request
      * @param Skill $skill
-     * @return Response
+     * @return JsonResponse
      */
     public function update(Request $request, Skill $skill): JsonResponse
     {
@@ -75,7 +75,7 @@ class SkillsController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param Skill $skill
-     * @return Response
+     * @return JsonResponse
      */
     public function destroy(Skill $skill): JsonResponse
     {
