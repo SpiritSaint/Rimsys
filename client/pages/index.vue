@@ -63,7 +63,7 @@ export default Vue.extend({
     }
   },
   mounted () {
-    this.getSkills();
+    this.getSkills()
     this.get(this.count)
     console.log('test')
   },
