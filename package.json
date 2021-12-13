@@ -28,6 +28,7 @@
     "nuxt-tailvue": "^1.0.10"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.16.0",
     "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",

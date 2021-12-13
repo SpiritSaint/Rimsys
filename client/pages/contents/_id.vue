@@ -123,7 +123,7 @@ import { Users, Content } from '@/types/api'
 export default Vue.extend({
   data () {
     const users:Users = []
-    const loaded:boolean = false
+    const loaded:boolean = true
     const content:Content = {
       id: 0,
       type: '',
