@@ -2,8 +2,8 @@
   <div class="container p-2 lg:p-8 flex flex-col">
     <div class="flex grid justify-items-end">
       <div>
-        <button @click="create" type="button" class="inline-flex items-center px-3 py-2 border-transparent border-gray-300 shadow-lg leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          <component is="icon-plus" class="w-6 h-6" />
+        <button type="button" class="inline-flex items-center px-3 py-2 border-transparent border-gray-300 shadow-lg leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="create">
+          <IconChevronLeft class="w-6 h-6" />
         </button>
       </div>
     </div>
@@ -85,7 +85,7 @@ export default Vue.extend({
   },
   methods: {
     async create (): Promise<void> {
-      await this.$router.push('/contents/create');
+      await this.$router.push('/contents/create')
     },
     async getContents (): Promise<void> {
       await this.$sleep(2000)
