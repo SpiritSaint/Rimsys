@@ -9,17 +9,27 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 'MySQL - tweak mysql'
-        run: |
-          echo "[mysqld]" | sudo tee -a /etc/mysql/conf.d/mysql.cnf > /dev/null
-          echo "skip-grant-tables" | sudo tee -a /etc/mysql/conf.d/mysql.cnf > /dev/null
-      - name: MySQL - restart and add database
-        run: |
-          sudo service mysql restart
-          mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`test-laranuxt\`"
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
       - uses: actions/checkout@v2
+      - name: Shutdown default MySQL (SUDO)
+        run: sudo service mysql stop
+      - name: Setting MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql version: "8.0"
+          mysql root password: "password"
+          mysql database: "application"
+      - name: Waiting for MySQL
+        run: |
+          while ! mysqladmin ping --host=127.0.0.1 --password=test --silent --show-warnings=FALSE; do
+            sleep 1
+          done
+      - name: Environment
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Get Composer Cache Directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
