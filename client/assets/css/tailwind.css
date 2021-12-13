@@ -1,3 +1,30 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.skeleton {
+  @apply text-opacity-0;
+  background-image: linear-gradient(100deg, #edf2f7 0%, #f4f7fa 20%, #edf2f7 40%);
+  background-position: 50%;
+  background-size: 200%;
+  animation: skeleton 1.5s infinite linear;
+}
+@keyframes skeleton {
+  0% {
+    background-position: 50%;
+  }
+  50%, 100% {
+    background-position: -90%
+  }
+}
+
+body {
+  min-height: 100vh;
+  background: url("/space.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.text-shadow {
+  text-shadow: 0 0 3px rgba(0,0,0,0.60);
+}

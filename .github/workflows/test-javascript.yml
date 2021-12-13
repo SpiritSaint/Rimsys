@@ -28,4 +28,4 @@ jobs:
         run: yarn
       -
         name: Run Jest
-        run: yarn test --color --all
+        run: yarn test:js --color --all

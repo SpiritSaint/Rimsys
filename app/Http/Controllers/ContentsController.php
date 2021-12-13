@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use acidjazz\metapi\MetApi;
+use App\Http\Requests\Contents\StoreRequest;
+use App\Http\Requests\Contents\UpdateRequest;
 use App\Models\Content;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -29,17 +31,17 @@ class ContentsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreRequest $request): JsonResponse
     {
         $content = Content::create([
             'type' => $request->input('type'),
-            'icon' => $request->input('icon'),
             'title' => $request->input('title'),
             'body' => $request->input('body'),
         ]);
+
         return $this->render($content, 201);
     }
 
@@ -57,15 +59,14 @@ class ContentsController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateRequest $request
      * @param Content $content
      * @return JsonResponse
      */
-    public function update(Request $request, Content $content): JsonResponse
+    public function update(UpdateRequest $request, Content $content): JsonResponse
     {
         $content->update([
             'type' => $request->filled('type') ? $request->input('type') : $content->type,
-            'icon' => $request->filled('icon') ? $request->input('icon') : $content->icon,
             'title' => $request->filled('title') ? $request->input('title') : $content->title,
             'body' => $request->filled('body') ? $request->input('body') : $content->body,
         ]);

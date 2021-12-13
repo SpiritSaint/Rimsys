@@ -10,6 +10,7 @@ class Content extends Model
     use HasFactory;
 
     public $fillable = [
+        'type',
         'icon',
         'title',
         'body',

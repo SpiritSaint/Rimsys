@@ -1,49 +1,81 @@
 <template>
   <div class="container p-2 lg:p-8 flex flex-col">
+    <div class="flex grid justify-items-end">
+      <div>
+        <button type="button" class="inline-flex items-center px-3 py-2 border-transparent border-gray-300 shadow-lg leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="create">
+          <IconPlus class="w-6 h-6" />
+        </button>
+      </div>
+    </div>
     <div class="m-8 flex items-center justify-center">
       <Logo />
     </div>
-    <ul v-if="users.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <contact-card-skeleton v-for="i in 9" :key="`skel-${i}`" />
-    </ul>
-    <ul v-if="contents.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <content-card-skeleton v-for="i in 9" :key="`content-${i}`" />
-    </ul>
-    <ul v-if="users.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <contact-card v-for="(user, index) in users" :key="index" :user="user" />
-    </ul>
-    <ul v-if="contents.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <content-card v-for="(content, index) in contents" :key="index" :content="content" />
-    </ul>
-    <div class="text-center mt-4">
-      <span>provided by endpoint</span><span>&nbsp;</span>
-      <a class="text-blue-400" :href="`${$config.apiUrl}/example?count=9`">/example</a>
-      <span>&nbsp;</span>
-      <span class="text-gray-400 text-sm">(2 second delay)</span>
-    </div>
-    <div class="text-center mx-auto mt-4">
-      <span class="mr-4">nuxt-tailvue kitchen sink:</span>
-      <div class="mt-2 flex mx-auto">
-        <n-link to="/modal">
-          <push-button theme="whiteLeft" class="-mr-px"> Modal </push-button>
-        </n-link>
-        <n-link to="/toast">
-          <push-button theme="whiteMid">
-            toasts
-          </push-button>
-        </n-link>
-        <n-link to="/button">
-          <push-button theme="whiteMid">
-            buttons
-          </push-button>
-        </n-link>
-        <n-link to="/icon">
-          <push-button theme="whiteRight">
-            icons
-          </push-button>
-        </n-link>
+    <h1 v-if="contents.length &gt; 0" class="text-4xl px-8 text-white shadow text-shadow">
+      <IconUserHeadset class="w-8 h-8 inline mr-3" />
+      Presentation
+    </h1>
+    <h1 v-if="contents.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <div v-if="contents.length &gt; 0" class="bg-white rounded-lg shadow-lg p-8 m-8">
+      <div>
+        <h1 class="text-3xl">Hello 👋</h1>
+        <p class="mt-4 text-gray-500">
+          My name is Ian Torres. A Senior Software Engineer.
+        </p>
+        <p class="mt-4 text-gray-500">
+          I'm currently trying to join to your company.
+        </p>
+        <p class="mt-4 text-gray-500">
+          Give a look to this page to check if i'm interesting to you.
+        </p>
       </div>
     </div>
+    <div v-if="contents.length === 0" class="bg-white rounded-lg shadow-lg p-8 m-8">
+      <div>
+        <h1 class="text-3xl skeleton w-32">&nbsp;</h1>
+        <p class="mt-4 text-gray-500 skeleton w-96">
+          &nbsp;
+        </p>
+        <p class="mt-4 text-gray-500 skeleton w-80">
+          &nbsp;
+        </p>
+        <p class="mt-4 text-gray-500 skeleton w-96">
+          &nbsp;
+        </p>
+      </div>
+    </div>
+    <h1 v-if="skills.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <h1 v-if="skills.length &gt; 0" class="text-4xl px-8 text-white text-shadow">
+      <IconCode class="w-8 h-8 inline mr-3" />
+      Skills
+    </h1>
+    <ul v-if="skills.length === 0" class="grid grid-cols-1 gap-6 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 6" :key="`content-${i}`" />
+    </ul>
+    <ul v-if="skills.length &gt; 0" class="grid grid-cols-1 gap-6 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in skills" :key="index" :content="content" />
+    </ul>
+    <h1 v-if="experiences.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <h1 v-if="experiences.length &gt; 0" class="text-4xl px-8 text-white text-shadow">
+      <IconBookOpen class="w-8 h-8 inline mr-3" />
+      Experiences
+    </h1>
+    <ul v-if="experiences.length === 0" class="grid grid-cols-1 gap-6 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
+    </ul>
+    <ul v-if="experiences.length &gt; 0" class="grid grid-cols-1 gap-6 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in experiences" :key="index" :content="content" />
+    </ul>
+    <h1 v-if="interests.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <h1 v-if="interests.length &gt; 0" class="text-4xl px-8 text-white text-shadow">
+      <IconKey class="w-8 h-8 inline mr-3" />
+      Interests
+    </h1>
+    <ul v-if="interests.length === 0" class="grid grid-cols-1 gap-6 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
+    </ul>
+    <ul v-if="interests.length &gt; 0" class="grid grid-cols-1 gap-6 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <content-card v-for="(content, index) in interests" :key="index" :content="content" />
+    </ul>
   </div>
 </template>
 
@@ -79,22 +111,20 @@ export default Vue.extend({
     console.log('test')
   },
   methods: {
+    async create (): Promise<void> {
+      await this.$router.push('/contents/create')
+    },
     async getContents (): Promise<void> {
-      await this.$sleep(2000)
+      await this.$sleep(1337)
       this.contents = (
         await this.$axios.get('contents')
       ).data.data as Contents
     },
     async get (count: number): Promise<void> {
-      await this.$sleep(2000)
+      await this.$sleep(1337)
       this.users = (
         await this.$axios.get('example', { params: { count } })
       ).data.data as Users
-    },
-    total (count: number): void {
-      this.users = []
-      this.count = count
-      this.get(this.count)
     },
   },
 })
