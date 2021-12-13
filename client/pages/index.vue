@@ -3,27 +3,21 @@
     <div class="m-8 flex items-center justify-center">
       <Logo />
     </div>
-    <ul v-if="users.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <contact-card-skeleton v-for="i in 9" :key="`skel-${i}`" />
-    </ul>
-    <ul v-if="users.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <contact-card v-for="(user, index) in users" :key="index" :user="user" />
-    </ul>
-    <h1 class="text-4xl px-8">Skills</h1>
+    <h1 v-if="skills.length &gt; 0" class="text-4xl px-8">Skills</h1>
     <ul v-if="skills.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 6" :key="`content-${i}`" />
     </ul>
     <ul v-if="skills.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card v-for="(content, index) in skills" :key="index" :content="content" />
     </ul>
-    <h1 class="text-4xl px-8">Experiences</h1>
+    <h1 v-if="experiences.length &gt; 0" class="text-4xl px-8">Experiences</h1>
     <ul v-if="experiences.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
     </ul>
     <ul v-if="experiences.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card v-for="(content, index) in experiences" :key="index" :content="content" />
     </ul>
-    <h1 class="text-4xl px-8">Interests</h1>
+    <h1 v-if="interests.length &gt; 0" class="text-4xl px-8">Interests</h1>
     <ul v-if="interests.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
     </ul>
@@ -35,29 +29,6 @@
       <a class="text-blue-400" :href="`${$config.apiUrl}/example?count=9`">/example</a>
       <span>&nbsp;</span>
       <span class="text-gray-400 text-sm">(2 second delay)</span>
-    </div>
-    <div class="text-center mx-auto mt-4">
-      <span class="mr-4">nuxt-tailvue kitchen sink:</span>
-      <div class="mt-2 flex mx-auto">
-        <n-link to="/modal">
-          <push-button theme="whiteLeft" class="-mr-px"> Modal </push-button>
-        </n-link>
-        <n-link to="/toast">
-          <push-button theme="whiteMid">
-            toasts
-          </push-button>
-        </n-link>
-        <n-link to="/button">
-          <push-button theme="whiteMid">
-            buttons
-          </push-button>
-        </n-link>
-        <n-link to="/icon">
-          <push-button theme="whiteRight">
-            icons
-          </push-button>
-        </n-link>
-      </div>
     </div>
   </div>
 </template>
