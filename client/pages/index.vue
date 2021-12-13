@@ -10,7 +10,7 @@
     <div class="m-8 flex items-center justify-center">
       <Logo />
     </div>
-    <h1 v-if="contents.length &gt; 0" class="text-4xl px-8 text-white">
+    <h1 v-if="contents.length &gt; 0" class="text-4xl px-8 text-white shadow text-shadow">
       <IconUserHeadset class="w-8 h-8 inline mr-3" />
       Presentation
     </h1>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <h1 v-if="skills.length === 0" class="text-4xl px-8">&nbsp;</h1>
-    <h1 v-if="skills.length &gt; 0" class="text-4xl px-8 text-white">
+    <h1 v-if="skills.length &gt; 0" class="text-4xl px-8 text-white text-shadow">
       <IconCode class="w-8 h-8 inline mr-3" />
       Skills
     </h1>
@@ -55,7 +55,7 @@
       <content-card v-for="(content, index) in skills" :key="index" :content="content" />
     </ul>
     <h1 v-if="experiences.length === 0" class="text-4xl px-8">&nbsp;</h1>
-    <h1 v-if="experiences.length &gt; 0" class="text-4xl px-8 text-white">
+    <h1 v-if="experiences.length &gt; 0" class="text-4xl px-8 text-white text-shadow">
       <IconBookOpen class="w-8 h-8 inline mr-3" />
       Experiences
     </h1>
@@ -66,7 +66,7 @@
       <content-card v-for="(content, index) in experiences" :key="index" :content="content" />
     </ul>
     <h1 v-if="interests.length === 0" class="text-4xl px-8">&nbsp;</h1>
-    <h1 v-if="interests.length &gt; 0" class="text-4xl px-8 text-white">
+    <h1 v-if="interests.length &gt; 0" class="text-4xl px-8 text-white text-shadow">
       <IconKey class="w-8 h-8 inline mr-3" />
       Interests
     </h1>
@@ -115,13 +115,13 @@ export default Vue.extend({
       await this.$router.push('/contents/create')
     },
     async getContents (): Promise<void> {
-      await this.$sleep(2000)
+      await this.$sleep(1337)
       this.contents = (
         await this.$axios.get('contents')
       ).data.data as Contents
     },
     async get (count: number): Promise<void> {
-      await this.$sleep(2000)
+      await this.$sleep(1337)
       this.users = (
         await this.$axios.get('example', { params: { count } })
       ).data.data as Users
