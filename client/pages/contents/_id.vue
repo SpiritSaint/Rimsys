@@ -8,10 +8,10 @@
         <IconChevronLeft class="w-6 h-6" />
       </button>
     </div>
-    <ul v-if="!loaded" class="gap-6 bg-gray-100 rounded px-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+    <ul v-if="!loaded" class="gap-6 rounded px-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 1" :key="`content-${i}`" />
     </ul>
-    <ul v-if="loaded" class="gap-6 bg-gray-100 rounded px-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+    <ul v-if="loaded" class="gap-6 rounded px-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card :key="content.id" :content="content" />
     </ul>
     <div v-if="loaded" class="bg-white rounded-lg shadow-lg p-8 m-8">
@@ -43,7 +43,6 @@
                 type="text"
                 name="title"
                 class="block border px-3 py-2 w-full text-gray-700 rounded-md"
-                placeholder="www.example.com"
               >
             </div>
           </div>
@@ -60,7 +59,6 @@
               name="body"
               rows="3"
               class="px-3 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-              placeholder="you@example.com"
             />
           </div>
         </div>

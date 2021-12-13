@@ -17,3 +17,10 @@
     background-position: -90%
   }
 }
+
+body {
+  min-height: 100vh;
+  background: url("/space.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

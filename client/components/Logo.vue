@@ -1,13 +1,20 @@
 <template>
   <div class="flex items-center">
-    <IconLaravel class="w-16 h-16 -mt-8" primary="text-red-500" />
-    <IconNuxt class="w-16 h-16 -ml-6 mt-8" />
+    <img v-if="loaded" src="https://s.gravatar.com/avatar/ae1c9a85ae64371b1d7f03dca3d010a0?s=120" alt="Ian Torres" class="rounded-full border shadow-lg w-40 h-40">
+    <div v-if="!loaded" class="skeleton rounded-full border shadow-lg w-40 h-40"></div>
   </div>
 </template>
 
 <script>
-import { IconLaravel, IconNuxt } from 'tv-icon'
 export default {
-  components: { IconLaravel, IconNuxt },
+  data() {
+    return {
+      loaded: false,
+    }
+  },
+  async mounted() {
+    await this.$sleep(2000)
+    this.loaded = true
+  }
 }
 </script>
