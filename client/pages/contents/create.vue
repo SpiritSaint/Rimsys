@@ -22,6 +22,7 @@
                 <option value="experiences">Experiences</option>
               </select>
             </div>
+            <p v-if="this.errors.type.length > 0" class="text-red-600 mt-2">{{ this.errors.type[0] }}</p>
           </div>
         </div>
 
@@ -33,6 +34,7 @@
             <div class="mt-1 rounded-md shadow-sm">
               <input id="title" v-model="content.title" type="text" name="title" class="block border px-3 py-2 w-full text-gray-700 rounded-md">
             </div>
+            <p v-if="this.errors.title.length > 0" class="text-red-600 mt-2">{{ this.errors.title[0] }}</p>
           </div>
         </div>
 
@@ -43,6 +45,7 @@
           <div class="mt-1">
             <textarea id="body" v-model="content.body" name="body" rows="3" class="px-3 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" />
           </div>
+          <p v-if="this.errors.body.length > 0" class="text-red-600 mt-2">{{ this.errors.body[0] }}</p>
         </div>
 
         <div>
@@ -100,6 +103,11 @@ export default Vue.extend({
   data () {
     const users:Users = []
     const loaded:boolean = false
+    const errors:any = {
+      type: [],
+      body: [],
+      title: [],
+    }
     const content:Content = {
       id: 0,
       type: '',
@@ -109,6 +117,7 @@ export default Vue.extend({
     const count:number = 9
 
     return {
+      errors,
       loaded,
       content,
       users,
@@ -124,19 +133,28 @@ export default Vue.extend({
       await this.$router.back()
     },
     async store (): Promise<void> {
-      this.content = (
-        await this.$axios.post('/contents', {
-          type: this.content.type,
-          title: this.content.title,
-          body: this.content.body,
+      try {
+        this.content = (
+          await this.$axios.post('/contents', {
+            type: this.content.type,
+            title: this.content.title,
+            body: this.content.body,
+          })
+        ).data.data as Content
+        this.$toast.show({
+          type: 'success',
+          title: 'Created',
+          message: 'Content was created successfully',
         })
-      ).data.data as Content
-      this.$toast.show({
-        type: 'success',
-        title: 'Created',
-        message: 'Content was created successfully',
-      })
-      await this.$router.push(`/contents/${this.content.id}`)
+        await this.$router.push(`/contents/${this.content.id}`)
+      } catch (e:any) {
+        this.$toast.show({
+          type: 'danger',
+          title: 'Error',
+          message: 'Validation rules not passed',
+        })
+        this.errors = e.response.data.errors;
+      }
     },
   },
 })

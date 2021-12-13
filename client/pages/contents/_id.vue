@@ -28,6 +28,7 @@
                 <option value="experiences">Experiences</option>
               </select>
             </div>
+            <p v-if="this.errors.type.length > 0" class="text-red-600 mt-2">{{ this.errors.type[0] }}</p>
           </div>
         </div>
 
@@ -45,6 +46,8 @@
                 class="block border px-3 py-2 w-full text-gray-700 rounded-md"
               >
             </div>
+
+            <p v-if="this.errors.title.length > 0" class="text-red-600 mt-2">{{ this.errors.title[0] }}</p>
           </div>
         </div>
 
@@ -61,6 +64,7 @@
               class="px-3 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
             />
           </div>
+          <p v-if="this.errors.body.length > 0" class="text-red-600 mt-2">{{ this.errors.body[0] }}</p>
         </div>
 
         <div>
@@ -123,7 +127,12 @@ import { Users, Content } from '@/types/api'
 export default Vue.extend({
   data () {
     const users:Users = []
-    const loaded:boolean = true
+    const loaded:boolean = false
+    const errors:any = {
+      type: [],
+      body: [],
+      title: [],
+    }
     const content:Content = {
       id: 0,
       type: '',
@@ -133,6 +142,7 @@ export default Vue.extend({
     const count:number = 9
 
     return {
+      errors,
       loaded,
       content,
       users,
@@ -162,16 +172,26 @@ export default Vue.extend({
       })
     },
     async update (): Promise<void> {
-      await this.$axios.put(`/contents/${this.$route.params.id}`, {
-        type: this.content.type,
-        title: this.content.title,
-        body: this.content.body,
-      })
-      this.$toast.show({
-        type: 'success',
-        title: 'Updated',
-        message: 'Content was changed successfully',
-      })
+      try {
+        await this.$axios.put(`/contents/${this.$route.params.id}`, {
+          type: this.content.type,
+          title: this.content.title,
+          body: this.content.body,
+        })
+        this.$toast.show({
+          type: 'success',
+          title: 'Updated',
+          message: 'Content was changed successfully',
+        })
+        await this.getContent()
+      } catch (e: any) {
+        this.$toast.show({
+          type: 'danger',
+          title: 'Error',
+          message: 'Validation rules not passed',
+        })
+        this.errors = e.response.data.errors;
+      }
     },
     async destroy (): Promise<void> {
       await this.$axios.delete(`/contents/${this.$route.params.id}`)
