@@ -28,7 +28,7 @@
                 <option value="experiences">Experiences</option>
               </select>
             </div>
-            <p v-if="this.errors.type.length > 0" class="text-red-600 mt-2">{{ this.errors.type[0] }}</p>
+            <p v-if="errors.type.length > 0" class="text-red-600 mt-2">{{ errors.type[0] }}</p>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
               >
             </div>
 
-            <p v-if="this.errors.title.length > 0" class="text-red-600 mt-2">{{ this.errors.title[0] }}</p>
+            <p v-if="errors.title.length > 0" class="text-red-600 mt-2">{{ errors.title[0] }}</p>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
               class="px-3 py-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
             />
           </div>
-          <p v-if="this.errors.body.length > 0" class="text-red-600 mt-2">{{ this.errors.body[0] }}</p>
+          <p v-if="errors.body.length > 0" class="text-red-600 mt-2">{{ errors.body[0] }}</p>
         </div>
 
         <div>
@@ -190,7 +190,7 @@ export default Vue.extend({
           title: 'Error',
           message: 'Validation rules not passed',
         })
-        this.errors = e.response.data.errors;
+        this.errors = e.response.data.errors
       }
     },
     async destroy (): Promise<void> {
