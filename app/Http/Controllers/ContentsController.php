@@ -41,6 +41,7 @@ class ContentsController extends BaseController
             'title' => $request->input('title'),
             'body' => $request->input('body'),
         ]);
+
         return $this->render($content, 201);
     }
 
