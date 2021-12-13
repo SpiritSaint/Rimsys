@@ -36,7 +36,6 @@ class ContentsController extends BaseController
     {
         $content = Content::create([
             'type' => $request->input('type'),
-            'icon' => $request->input('icon'),
             'title' => $request->input('title'),
             'body' => $request->input('body'),
         ]);
@@ -65,7 +64,6 @@ class ContentsController extends BaseController
     {
         $content->update([
             'type' => $request->filled('type') ? $request->input('type') : $content->type,
-            'icon' => $request->filled('icon') ? $request->input('icon') : $content->icon,
             'title' => $request->filled('title') ? $request->input('title') : $content->title,
             'body' => $request->filled('body') ? $request->input('body') : $content->body,
         ]);

@@ -27,8 +27,8 @@ export interface User {
 }
 
 export interface Content {
+  id: number
   type: string
-  icon: string
   title: string
   body: string
 }

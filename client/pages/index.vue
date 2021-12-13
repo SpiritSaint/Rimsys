@@ -1,23 +1,42 @@
 <template>
   <div class="container p-2 lg:p-8 flex flex-col">
+    <div class="flex grid justify-items-end">
+      <div>
+        <button @click="create" type="button" class="inline-flex items-center px-3 py-2 border-transparent border-gray-300 shadow-lg leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <component is="icon-plus" class="w-6 h-6" />
+        </button>
+      </div>
+    </div>
     <div class="m-8 flex items-center justify-center">
       <Logo />
     </div>
-    <h1 v-if="skills.length &gt; 0" class="text-4xl px-8">Skills</h1>
+    <h1 v-if="skills.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <h1 v-if="skills.length &gt; 0" class="text-4xl px-8 text-gray-700">
+      <IconCode class="w-8 h-8 inline mr-3" />
+      Skills
+    </h1>
     <ul v-if="skills.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 6" :key="`content-${i}`" />
     </ul>
     <ul v-if="skills.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card v-for="(content, index) in skills" :key="index" :content="content" />
     </ul>
-    <h1 v-if="experiences.length &gt; 0" class="text-4xl px-8">Experiences</h1>
+    <h1 v-if="experiences.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <h1 v-if="experiences.length &gt; 0" class="text-4xl px-8 text-gray-700">
+      <IconBookOpen class="w-8 h-8 inline mr-3" />
+      Experiences
+    </h1>
     <ul v-if="experiences.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
     </ul>
     <ul v-if="experiences.length &gt; 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card v-for="(content, index) in experiences" :key="index" :content="content" />
     </ul>
-    <h1 v-if="interests.length &gt; 0" class="text-4xl px-8">Interests</h1>
+    <h1 v-if="interests.length === 0" class="text-4xl px-8">&nbsp;</h1>
+    <h1 v-if="interests.length &gt; 0" class="text-4xl px-8 text-gray-700">
+      <IconKey class="w-8 h-8 inline mr-3" />
+      Interests
+    </h1>
     <ul v-if="interests.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
       <content-card-skeleton v-for="i in 3" :key="`content-${i}`" />
     </ul>
@@ -65,6 +84,9 @@ export default Vue.extend({
     console.log('test')
   },
   methods: {
+    async create (): Promise<void> {
+      await this.$router.push('/contents/create');
+    },
     async getContents (): Promise<void> {
       await this.$sleep(2000)
       this.contents = (
