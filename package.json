@@ -45,7 +45,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "husky": "^7.0.1",
-    "jest": "^27.0.5",
+    "jest": "^29.1.1",
     "nuxt-storm": "^1.0.8",
     "nuxt-typed-vuex": "^0.2.0",
     "postcss": "^8.3.5",
